@@ -1,0 +1,181 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>ChartPulsDjango</title>
+    <link rel="stylesheet" href="{% static 'css\\style.css' %}">
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+<body>
+    
+    <header>
+        <span id="userName">Sandro Junior/Logaout</span>
+    </header>
+
+    <section id="conteudo">
+        <section id="graficos">
+            <div style="width: 850px; height: 200px ;">
+                <canvas id="fluxoD" width="850" height="200"></canvas>
+            </div>
+            
+            <div class="picos">
+                <div >
+                    <canvas id="picoM" width="400" height="300"></canvas>
+                </div>
+                <div style="margin-left:4%;">
+                    <canvas id="picoD" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="informacao">
+            <form action="{% url 'index' %}" method="POST">
+                {%csrf_token%}
+                <input type="date" name="dataBusca" id="dataBusca" required min="2020-09-01" max="2020-010-01">
+                <input type="submit">
+            </form>
+            <span class="titleIf">Maior Fluxo</span>
+            <div class="ifTable">
+                <span id="interMaxFluxo">{{MenorInt}} - {{MaiorInt}}</span>
+            </div>
+            <span class="titleIf">Minimo Fluxo</span>
+            <div class="ifTable">
+                <span id="interMinFluxo">{{menorInt}} - {{maiorInt}}</span>
+            </div>
+            <span class="titleIf">Total</span>
+            <div class="ifTable">
+                <span id="totalP">{{t_pes}}</span>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        let _time = JSON.parse('{{time|safe}}')
+        let _total = JSON.parse('{{total|safe}}')
+        console.log(_time)
+        var ctx_fluxoD = document.getElementById('fluxoD').getContext('2d');
+        var ctx_picoM = document.getElementById('picoM').getContext('2d');
+        var ctx_picoD = document.getElementById('picoD').getContext('2d');
+        
+        
+        var fluxoD = new Chart(ctx_fluxoD, {
+            type: 'bar',
+            data: {
+                labels: _time,
+                datasets: [{
+                    label: '{{dia}}',
+                    data: _total,
+                    backgroundColor: [
+                        'rgba(255, 99, 132)',
+                        'rgba(54, 162, 235)',
+                        'rgba(255, 206, 86)',
+                        'rgba(75, 192, 192,)',
+                        'rgba(153, 102, 255)',
+                        'rgba(255, 159, 64)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        
+        var picoM = new Chart(ctx_picoM, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        
+        var picoD = new Chart(ctx_picoD, {
+            type: 'bar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: null,
+                    data: [1,2,3,4,5,6,7,8,9,10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+
+    {% block content %}
+
+    
+    {% endblock %}
+
+    <!--<script src="{% static 'js\\script.js' %}"></script> -->
+</body>
+</html>

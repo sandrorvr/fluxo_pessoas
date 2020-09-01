@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#conteudo{
+    position: absolute;
+    margin-top: 70px;
+    display: flex;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 75%, #FFCBFA 100%);
+    width: 100%;
+    height: 100%;
+}
+
+
+
+#userName{
+    position: absolute;
+    width: 173px;
+    height: 21px;
+    left: 1100px;
+    top: 20px;
+
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+
+    color: #FFFFFF;
+}
+
+.picos{
+    display: flex;
+    height: 300px;
+}
+
+header{
+    position: absolute;
+    width: 100%;
+    height: 60px;
+
+    background: #6D517A;
+}
+
+.ifTable{
+    width: 315px;
+    height: 90px;
+
+    margin-top: 15px;
+
+    background: linear-gradient(180deg, #FFFFFF 73.17%, #FAFAFA 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+}
+
+div.ifTable > span{
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.ifTable{
+    margin-left: 30px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section#informacao > form{
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.titleIf{
+    position: relative;
+    top: 20px;
+    margin-left: 20%;
+    font-family: Arimo;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+}
